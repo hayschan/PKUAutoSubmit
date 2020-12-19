@@ -212,7 +212,7 @@ def fill_in(driver, campus, reason, habitation, district, street):
 def wechat_notification(username, sckey):
     with request.urlopen(
             quote('https://sc.ftqq.com/' + sckey + '.send?text=成功报备&desp=学号' +
-                  str(userName) + '成功报备',
+                  str(username) + '成功报备',
                   safe='/:?=&')) as response:
         response = json.loads(response.read().decode('utf-8'))
     if response['errmsg'] == 'success':
