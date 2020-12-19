@@ -232,8 +232,9 @@ def run(driver, username, password, campus, reason, destination, track,
     go_to_application_in(driver)
     fill_in(driver, campus, reason, habitation, district, street)
     
-    wechat_notification(username, wechat)
-    print('====微信=============================')
+    if wechat != '0':
+        wechat_notification(username, wechat)
+        print('====微信=============================')
     
     print('=================================')
     print('可以愉快的玩耍啦！')
@@ -251,7 +252,7 @@ if __name__ == '__main__':
     parser.add_argument('--habitation', type=str, help='入校前居住地, eg. 北京', default='北京')
     parser.add_argument('--district', type=str, help='入校前居住所在区, eg. 海淀区', default='海淀区')
     parser.add_argument('--street', type=str, help='入校前居住所在街道, eg. 燕园街道', default='燕园街道')
-    parser.add_argument('--wechat', type=str, help='server 酱')
+    parser.add_argument('--wechat', type=str, help='server 酱', default='0')
     args = parser.parse_args()
 
     args_public = copy.deepcopy(args)
