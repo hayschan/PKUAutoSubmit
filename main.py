@@ -232,7 +232,7 @@ def run(driver, username, password, campus, reason, destination, track,
     go_to_application_in(driver)
     fill_in(driver, campus, reason, habitation, district, street)
     
-    wechat_notification(username, sckey)
+    wechat_notification(username, wechat)
     print('====微信=============================')
     
     print('=================================')
