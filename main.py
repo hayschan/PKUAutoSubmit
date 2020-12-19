@@ -273,6 +273,6 @@ if __name__ == '__main__':
 
     run(driver, args.username, args.password, args.campus, args.reason,
         args.destination, args.track, args.habitation, args.district,
-        args.street)
+        args.street, arg.wechat)
 
     driver.close()
