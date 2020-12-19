@@ -221,7 +221,7 @@ def wechat_notification(username, sckey):
         print(str(response['errno']) + ' error: ' + response['errmsg'])
     
 def run(driver, username, password, campus, reason, destination, track,
-        habitation, district, street):
+        habitation, district, street, wechat):
     login(driver, username, password)
     print('=================================')
 
