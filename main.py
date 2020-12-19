@@ -7,6 +7,8 @@ from selenium.webdriver import Firefox, Chrome, PhantomJS
 from selenium import webdriver
 from argparse import ArgumentParser
 from urllib.parse import quote
+from urllib import request
+import json
 import time
 import copy
 import sys
@@ -223,6 +225,16 @@ def run(driver, username, password, campus, reason, destination, track,
     print('=================================')
     print('可以愉快的玩耍啦！')
 
+def wechat_notification(userName, sckey):
+    with request.urlopen(
+            quote('https://sc.ftqq.com/' + sckey + '.send?text=成功报备&desp=学号' +
+                  str(userName) + '成功报备',
+                  safe='/:?=&')) as response:
+        response = json.loads(response.read().decode('utf-8'))
+    if response['errmsg'] == 'success':
+        print('微信通知成功！')
+    else:
+        print(str(response['errno']) + ' error: ' + response['errmsg'])
 
 if __name__ == '__main__':
     parser = ArgumentParser()
