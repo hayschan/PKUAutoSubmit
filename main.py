@@ -209,7 +209,17 @@ def fill_in(driver, campus, reason, habitation, district, street):
 
     print('入校备案填报完毕！')
 
-
+def wechat_notification(username, sckey):
+    with request.urlopen(
+            quote('https://sc.ftqq.com/' + sckey + '.send?text=成功报备&desp=学号' +
+                  str(userName) + '成功报备',
+                  safe='/:?=&')) as response:
+        response = json.loads(response.read().decode('utf-8'))
+    if response['errmsg'] == 'success':
+        print('微信通知成功！')
+    else:
+        print(str(response['errno']) + ' error: ' + response['errmsg'])
+    
 def run(driver, username, password, campus, reason, destination, track,
         habitation, district, street):
     login(driver, username, password)
@@ -228,16 +238,7 @@ def run(driver, username, password, campus, reason, destination, track,
     print('=================================')
     print('可以愉快的玩耍啦！')
 
-def wechat_notification(userName, sckey):
-    with request.urlopen(
-            quote('https://sc.ftqq.com/' + sckey + '.send?text=成功报备&desp=学号' +
-                  str(userName) + '成功报备',
-                  safe='/:?=&')) as response:
-        response = json.loads(response.read().decode('utf-8'))
-    if response['errmsg'] == 'success':
-        print('微信通知成功！')
-    else:
-        print(str(response['errno']) + ' error: ' + response['errmsg'])
+
 
 if __name__ == '__main__':
     parser = ArgumentParser()
