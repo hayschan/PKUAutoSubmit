@@ -221,7 +221,10 @@ def run(driver, username, password, campus, reason, destination, track,
 
     go_to_application_in(driver)
     fill_in(driver, campus, reason, habitation, district, street)
-
+    
+    wechat_notification(userName, sckey)
+    print('====微信=============================')
+    
     print('=================================')
     print('可以愉快的玩耍啦！')
 
